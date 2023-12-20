@@ -76,7 +76,7 @@ const App = () => {
   return (
     <>
 
-      <div className="canvas-container">Ｆ
+      <div className="canvas-container">
         <Canvas shadows>
           <ScrollControls pages={2} damping={0.5}>
             {/* <OrbitControls enableZoom={false} /> */}
