@@ -2,26 +2,14 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+
 
 body {
   margin: 0;
@@ -29,6 +17,26 @@ body {
   height: 100%;
 }
 
-.canvas-container{
+.canvas-container {
   height: 100vh;
+  background: radial-gradient(175.58% 88.8% at 50.73% 51.46%, #000 0%, rgba(0, 0, 0, 0.67) 32.81%, rgba(197, 0, 246, 0.00) 100%, rgba(197, 0, 246, 0.00) 100%), linear-gradient(180deg, #7500E9 0%, rgba(99, 99, 99, 0.00) 100%);
+}
+
+.content {
+  max-width: 50%;
+}
+
+.contentContainer {
+  height: 100vh;
+  display: flex;
+  padding-left: 24px;
+  padding-right: 24px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    display: none;
+  }
+  
 }

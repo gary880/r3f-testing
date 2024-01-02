@@ -1,97 +1,49 @@
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Environment, ScrollControls, Text } from "@react-three/drei"
-import { useRef } from "react"
-import { OrbitControls, useScroll } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
+import { Environment, Scroll, ScrollControls, OrbitControls } from "@react-three/drei"
 import { VisionPro } from "./VisionPro"
+import description from "../public/description.json"
 
-function Composition({ ...props }) {
-  const scroll = useScroll()
-  const sphere = useRef(null)
-  useFrame((state, delta) => {
-    const r1 = scroll.range(0, 1 / 3)
-    const r2 = scroll.range(1 / 3, 1)
-
-    sphere.current.rotation.x = (2 * Math.PI) * r1
-    sphere.current.position.z = - r1 * 0.8
-    sphere.current.position.x = - 2 * r1
-
-
-    sphere.current.position.x = - 2 * r1 + r2 * 3.2
-    sphere.current.rotation.y = (2 * Math.PI) * r2
-
-  })
+const Text = (props: any) => {
   return (
     <>
-
-      <mesh
-        {...props}
-        ref={sphere}
-        castShadow
-
-      >
-
-        <spotLight position={[0, 5, 10]} angle={0.3} penumbra={1} />
-        <sphereGeometry args={[3, 16, 16]} />
-        <meshStandardMaterial color={'white'} wireframe />
-      </mesh>
-
-
+      <div className="contentContainer" style={props.index >= description.length - 2 ? { textAlign: "end", alignItems: "flex-end" } : {}}>
+        <h2>{props.title}</h2>
+        <p className="content">{props.content}</p>
+      </div>
     </>
   )
 }
-
-
-const TextMesh = ({ ...props }) => {
-  const scroll = useScroll()
-  const text = useRef(null)
-
-  useFrame((state, delta) => {
-    const r1 = scroll.range(0, 1 / 3)
-    const r2 = scroll.range(1 / 3, 2 / 3)
-
-    // @ts-ignore
-    text.current.position.x = r1 * 2
-    // @ts-ignore
-    text.current.position.z = r1 * 0.8
-    
-  })
-
-  return (
-    <>
-      <mesh
-        {...props}
-        ref={text}
-        castShadow
-        rotation={[0, -0.5, 0]}
-      >
-        <spotLight position={[0, 5, 10]} angle={0.3} penumbra={1} />
-        <Text >sphere</Text>
-      </mesh>
-    </>
-  )
-}
-
 
 const App = () => {
 
-
   return (
     <>
+      <div className="canvas-container" >
+        <Canvas shadows camera={{ fov: 50 }} >
 
-      <div className="canvas-container">
-        <Canvas shadows>
-          <ScrollControls pages={3} damping={0.5}>
-            <OrbitControls enableZoom={false} />
+          <ScrollControls pages={6} damping={0.6} >
+            <OrbitControls enableZoom={false} enableRotate={false} />
             <ambientLight />
 
             <directionalLight position={[0, 10, 0]} intensity={1} />
             <pointLight position={[10, 10, 10]} />
+
             <Environment preset="sunset" />
-            <TextMesh />
-            <Composition />
             <VisionPro />
+
+            <Scroll html >
+              <div style={{ width: "100vw" }}>
+                <h1 style={{ height: '100vh', width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>Apple Vision Pro</h1>
+                {description.map((item, index) => {
+                  return <Text key={item.title} index={index} title={item.title} content={item.content} />
+                })}
+              </div>
+
+            </Scroll>
           </ScrollControls>
+
         </Canvas>
+
       </div >
     </>
   )
