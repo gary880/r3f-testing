@@ -2,14 +2,16 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color: white;
   color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 20px #fff;
 }
-
-
 
 body {
   margin: 0;
@@ -19,7 +21,14 @@ body {
 
 .canvas-container {
   height: 100vh;
-  background: radial-gradient(175.58% 88.8% at 50.73% 51.46%, #000 0%, rgba(0, 0, 0, 0.67) 32.81%, rgba(197, 0, 246, 0.00) 100%, rgba(197, 0, 246, 0.00) 100%), linear-gradient(180deg, #7500E9 0%, rgba(99, 99, 99, 0.00) 100%);
+  background: radial-gradient(
+      175.58% 88.8% at 50.73% 51.46%,
+      #000 0%,
+      rgba(0, 0, 0, 0.67) 32.81%,
+      rgba(197, 0, 246, 0) 100%,
+      rgba(197, 0, 246, 0) 100%
+    ),
+    linear-gradient(180deg, #7500e9 0%, rgba(99, 99, 99, 0) 100%);
 }
 
 .content {
@@ -38,5 +47,4 @@ body {
   .content {
     display: none;
   }
-  
 }
